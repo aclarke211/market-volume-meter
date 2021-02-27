@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <DescriptionComp />
     <StocksComp />
+    <DescriptionComp />
   </div>
 </template>
 

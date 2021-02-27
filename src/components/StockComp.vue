@@ -1,6 +1,7 @@
 <template>
   <div :class="className">
-    <h1>{{ msg }}</h1>
+    <h1>{{ name.text }}</h1>
+    <h2>{{ name.symbol }}</h2>
   </div>
 </template>
 
@@ -8,9 +9,15 @@
 export default {
   name: 'StockComp',
 
-  data: () => ({
-    msg: 'Stock',
-  }),
+  props: {
+    name: {
+      type: Object,
+      default: () => ({
+        text: 'Stock Name',
+        symbol: 'SYMB',
+      }),
+    },
+  },
 };
 </script>
 

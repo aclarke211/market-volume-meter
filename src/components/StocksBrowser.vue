@@ -5,7 +5,7 @@
     <div :class="`${className}__controls__container`">
       <button
         :class="`${className}__control`"
-        @click="generateStocks()">
+        @click="regenerate()">
           Re-generate
       </button>
     </div>
@@ -57,13 +57,16 @@ export default {
     title: 'Stocks Browser',
     description: 'Currently using mock data.',
     className: 'stocks-browser',
+    addValue: 10,
   }),
 
   computed: {
     instruments() {
-      return {
+      const refreshedStocks = {
         stocks: this.generateStocks(),
       };
+
+      return refreshedStocks;
     },
 
     randomColour() {
@@ -83,13 +86,19 @@ export default {
   },
 
   methods: {
+    regenerate() {
+      this.addValue += 1;
+
+      this.generateStocks();
+    },
+
     generateValues(min, max) {
       const randomNum = Math.random() * (max - min) + min;
       return Math.floor(randomNum);
     },
 
     generateStocks() {
-      const updatedStocks = this.stocks.map((stock) => {
+      let updatedStocks = this.stocks.map((stock) => {
         const tempStock = stock;
 
         tempStock.volume = this.generateVolume();
@@ -97,7 +106,8 @@ export default {
         return tempStock;
       });
 
-      this.$forceUpdate();
+      updatedStocks = this.reorderStocks(updatedStocks);
+
       return updatedStocks;
     },
 
@@ -105,12 +115,16 @@ export default {
       return {
         relative: this.generateValues(10, 100),
         total: this.generateValues(10, 100),
-        current: this.generateValues(10, 100),
+        current: this.generateValues(this.addValue, 100),
       };
     },
 
     calculateVolumePercent(volume) {
       return parseFloat((volume.total / (volume.relative / 100)).toFixed(2), 10);
+    },
+
+    reorderStocks(stocks) {
+      return stocks.sort((a, b) => parseFloat(b.percentValue) - parseFloat(a.percentValue));
     },
   },
 

@@ -147,6 +147,10 @@ $className: '.stocks-browser';
   width: auto;
   max-width: 100%;
   margin: 1rem;
+
+  &__title {
+    font-weight: 600;
+  }
 }
 
 </style>

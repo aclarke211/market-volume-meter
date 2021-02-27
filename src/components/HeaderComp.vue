@@ -23,6 +23,10 @@ $className: ".header-comp";
 #{$className} {
   margin: 0;
   padding: 0;
+
+  &__title {
+    font-weight: 600;
+  }
 }
 
 </style>

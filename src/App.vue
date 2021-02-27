@@ -18,10 +18,12 @@ export default {
 <style>
 @font-face {
   font-family: 'oxygen-regular';
-  src: url('./assets/fonts/Oxygen/Oxygen-Regular.ttf');
+  src: url('./assets/fonts/Oxygen/Oxygen-Light.ttf');
 }
 
 * {
   font-family: 'oxygen-regular', sans-serif;
+  letter-spacing: .05rem;
+  font-weight: 400;
 }
 </style>

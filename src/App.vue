@@ -14,3 +14,14 @@ export default {
   },
 };
 </script>
+
+<style>
+@font-face {
+  font-family: 'oxygen-regular';
+  src: url('./assets/fonts/Oxygen/Oxygen-Regular.ttf');
+}
+
+* {
+  font-family: 'oxygen-regular', sans-serif;
+}
+</style>

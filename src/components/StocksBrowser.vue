@@ -1,6 +1,6 @@
 <template>
   <div :class="className">
-    <h2 :class="`${className}__title`" v-html="title" />
+    <h2 :class="`${className}__title`" v-html="title" :style="{color: randomColour}" />
     <p :class="`${className}__description`" v-html="description" />
     <div :class="`${className}__controls__container`">
       <button
@@ -63,6 +63,21 @@ export default {
       return {
         stocks: this.generateStocks(),
       };
+    },
+
+    randomColour() {
+      const hex = ['a', 'b', 'c', 'd', 'e', 'f', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+      const defaultColourValues = ['0', '0', '0', '0', '0', '0'];
+
+      const color = defaultColourValues.map((char) => {
+        let hexValue = char;
+        const hexIndex = Math.floor(Math.random() * (hex.length) - 0) + 0;
+
+        hexValue = hex[hexIndex];
+        return hexValue;
+      });
+
+      return `#${color.toString().replaceAll(',', '')}`;
     },
   },
 

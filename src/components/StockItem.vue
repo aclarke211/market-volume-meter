@@ -48,17 +48,16 @@ export default {
         current: 20.11,
       }),
     },
+
+    percentValue: {
+      type: Number,
+      default: 20,
+    },
   },
 
   data: () => ({
     className: 'stock-item',
   }),
-
-  computed: {
-    percentValue() {
-      return 58;
-    },
-  },
 };
 </script>
 

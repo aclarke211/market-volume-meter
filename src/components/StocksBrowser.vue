@@ -15,6 +15,7 @@
         :key="stockKey"
         :name="stock.name"
         :volume="stock.volume"
+        :percent-value="stock.percentValue"
       />
     </div>
   </div>
@@ -92,6 +93,7 @@ export default {
         const tempStock = stock;
 
         tempStock.volume = this.generateVolume();
+        tempStock.percentValue = parseFloat(this.calculateVolumePercent(tempStock.volume), 10);
         return tempStock;
       });
 
@@ -105,6 +107,10 @@ export default {
         total: this.generateValues(10, 100),
         current: this.generateValues(10, 100),
       };
+    },
+
+    calculateVolumePercent(volume) {
+      return (volume.total / (volume.relative / 100)).toFixed(2);
     },
   },
 

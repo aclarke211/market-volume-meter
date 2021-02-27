@@ -93,7 +93,7 @@ export default {
         const tempStock = stock;
 
         tempStock.volume = this.generateVolume();
-        tempStock.percentValue = parseFloat(this.calculateVolumePercent(tempStock.volume), 10);
+        tempStock.percentValue = this.calculateVolumePercent(tempStock.volume);
         return tempStock;
       });
 
@@ -110,7 +110,7 @@ export default {
     },
 
     calculateVolumePercent(volume) {
-      return (volume.total / (volume.relative / 100)).toFixed(2);
+      return parseFloat((volume.total / (volume.relative / 100)).toFixed(2), 10);
     },
   },
 

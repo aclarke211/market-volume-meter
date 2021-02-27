@@ -1,12 +1,20 @@
 <template>
   <div :class="className">
-    <h2 :class="`${className}__title`">{{ title }}</h2>
-    <p :class="`${className}__description`">{{ description }}</p>
+    <h2 :class="`${className}__title`" v-html="title" />
+    <p :class="`${className}__description`" v-html="description" />
+    <div :class="`${className}__controls__container`">
+      <button
+        :class="`${className}__control`"
+        @click="generateStocks()">
+          Re-generate
+      </button>
+    </div>
     <div class="stocks__container">
       <StockItem
-        v-for="(stock, stockKey) in stocks"
+        v-for="(stock, stockKey) in instruments.stocks"
         :key="stockKey"
         :name="stock.name"
+        :volume="stock.volume"
       />
     </div>
   </div>
@@ -49,6 +57,41 @@ export default {
     description: 'Currently using mock data.',
     className: 'stocks-browser',
   }),
+
+  computed: {
+    instruments() {
+      return {
+        stocks: this.generateStocks(),
+      };
+    },
+  },
+
+  methods: {
+    generateValues(min, max) {
+      const randomNum = Math.random() * (max - min) + min;
+      return Math.floor(randomNum);
+    },
+
+    generateStocks() {
+      const updatedStocks = this.stocks.map((stock) => {
+        const tempStock = stock;
+
+        tempStock.volume = this.generateVolume();
+        return tempStock;
+      });
+
+      this.$forceUpdate();
+      return updatedStocks;
+    },
+
+    generateVolume() {
+      return {
+        relative: this.generateValues(10, 100),
+        total: this.generateValues(10, 100),
+        current: this.generateValues(10, 100),
+      };
+    },
+  },
 
   components: {
     StockItem,

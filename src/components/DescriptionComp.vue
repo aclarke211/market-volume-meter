@@ -1,13 +1,17 @@
 <template>
   <div :class="className">
-    <div class="messages-container">
-      <p v-for="(msg, msgKey) in messages"
+    <div :class="`${className}__messages-container`">
+      <p
+        :class="`${className}__message`"
+        v-for="(msg, msgKey) in messages"
         :key="msgKey"
         v-html="msg">
       </p>
     </div>
-    <ul class="bullets-container">
-      <li v-for="(bullet, bulletKey) in bullets"
+    <ul :class="`${className}__bullets-container`">
+      <li
+        :class="`${className}__bullet`"
+        v-for="(bullet, bulletKey) in bullets"
         :key="bulletKey"
         v-html="bullet">
       </li>
@@ -20,6 +24,7 @@ export default {
   name: 'DescriptionComp',
 
   data: () => ({
+    className: 'description-comp',
     messages: [
       'This meter shows the following statistics.',
     ],
@@ -35,5 +40,12 @@ export default {
 </script>
 
 <style lang="scss">
+/* Sass Variables */
+$className: ".description-comp";
+
+#{$className} {
+  margin: 0;
+  padding: 0;
+}
 
 </style>

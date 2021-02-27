@@ -6,10 +6,10 @@
 
 <script>
 export default {
-  name: 'StocksComp',
+  name: 'StockComp',
 
   data: () => ({
-    msg: 'Stocks Component',
+    msg: 'Stock',
   }),
 };
 </script>

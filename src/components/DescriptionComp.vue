@@ -1,6 +1,5 @@
 <template>
   <div :class="className">
-    <h2>{{ title }}</h2>
     <div class="messages-container">
       <p v-for="(msg, msgKey) in messages"
         :key="msgKey"
@@ -21,7 +20,6 @@ export default {
   name: 'DescriptionComp',
 
   data: () => ({
-    title: 'Description Component',
     messages: [
       '<strong>[NOTE]:</strong> This meter is currently showing mock data.',
       'This meter shows the following statistics.',

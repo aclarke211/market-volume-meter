@@ -1,8 +1,9 @@
 <template>
   <div :class="className">
-    <h1>{{ title }}</h1>
+    <h2 :class="`${className}__title`">{{ title }}</h2>
+    <p :class="`${className}__description`">{{ description }}</p>
     <div class="stocks__container">
-      <StockComp
+      <StockItem
         v-for="(stock, stockKey) in stocks"
         :key="stockKey"
         :name="stock.name"
@@ -12,10 +13,10 @@
 </template>
 
 <script>
-import StockComp from '@/components/StockComp.vue';
+import StockItem from '@/components/StockItem.vue';
 
 export default {
-  name: 'StocksComp',
+  name: 'StocksBrowser',
 
   props: {
     stocks: {
@@ -29,8 +30,8 @@ export default {
         },
         {
           name: {
-            text: 'GameStop',
-            symbol: 'GME',
+            text: 'Microsoft Corp.',
+            symbol: 'MSFT',
           },
         },
         {
@@ -44,15 +45,30 @@ export default {
   },
 
   data: () => ({
-    title: 'Stocks',
+    title: 'Stocks Browser',
+    description: 'Currently using mock data.',
+    className: 'stocks-browser',
   }),
 
   components: {
-    StockComp,
+    StockItem,
   },
 };
 </script>
 
 <style lang="scss">
+/* Sass Variables */
+$className: '.stocks-browser';
+
+#{$className} {
+  border: solid forestgreen;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  max-width: 100%;
+  margin: 1rem;
+}
 
 </style>

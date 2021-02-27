@@ -21,7 +21,6 @@ export default {
 
   data: () => ({
     messages: [
-      '<strong>[NOTE]:</strong> This meter is currently showing mock data.',
       'This meter shows the following statistics.',
     ],
     bullets: [

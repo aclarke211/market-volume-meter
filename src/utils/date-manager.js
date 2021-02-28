@@ -8,13 +8,18 @@ function toUTCDate(date) {
 
 function getLocalDate(utcString) {
   if (utcString) {
-    return new Date(utcString);
+    return new Date(utcString).toLocaleString('en-US', Intl.DateTimeFormat().resolvedOptions().timeZone);
   }
-  return new Date();
+  return new Date().toLocaleString('en-US', Intl.DateTimeFormat().resolvedOptions().timeZone);
+}
+
+function getTimezoneDate(location = 'America/Los_Angeles') {
+  return new Date().toLocaleString('en-US', { timeZone: location });
 }
 
 module.exports = {
   getDateUTC,
   toUTCDate,
   getLocalDate,
+  getTimezoneDate,
 };

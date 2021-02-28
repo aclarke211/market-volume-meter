@@ -7,7 +7,15 @@
       </div>
       <div class="local-time time__container">
         <label class="local-time__label" v-html="`${clocks.localTime.label}: `" />
-        <div class="local-time__clock clock">{{ formattedLocalTime }}</div>
+        <div class="local-time__clock clock">{{ formatTime(clocks.localTime.value) }}</div>
+      </div>
+      <div class="nyse-time time__container">
+        <label class="nyse-time__label" v-html="`${clocks.nyseTime.label}: `" />
+        <div class="nyse-time__clock clock">{{ formatTime(clocks.nyseTime.value) }}</div>
+      </div>
+      <div class="lse-time time__container">
+        <label class="lse-time__label" v-html="`${clocks.lseTime.label}: `" />
+        <div class="lse-time__clock clock">{{ formatTime(clocks.lseTime.value) }}</div>
       </div>
       <div class="time-running time__container">
         <label class="time-running__label" v-html="`${clocks.timeRunning.label}: `" />
@@ -34,7 +42,17 @@ export default {
       localTime: {
         label: 'Local Time',
         initialValue: dateManager.getLocalDate(),
-        value: dateManager.getLocalDate().toTimeString(),
+        value: dateManager.getLocalDate(),
+      },
+      nyseTime: {
+        label: 'New York',
+        initialValue: dateManager.getTimezoneDate('America/New_York'),
+        value: dateManager.getTimezoneDate('America/New_York'),
+      },
+      lseTime: {
+        label: 'London',
+        initialValue: dateManager.getTimezoneDate('Europe/London'),
+        value: dateManager.getTimezoneDate('Europe/London'),
       },
       utcTime: {
         label: 'UTC Time',
@@ -48,17 +66,19 @@ export default {
     clockTimeSeconds() {
       return this.clocks.timeRunning.value / 1000;
     },
-
-    formattedLocalTime() {
-      return this.clocks.localTime.value.toString().substring(0, this.clocks.localTime.value.toString().indexOf(' '));
-    },
   },
 
   methods: {
     updateTimes() {
-      this.clocks.localTime.value = dateManager.getLocalDate().toTimeString();
       this.clocks.utcTime.value = dateManager.getDateUTC();
+      this.clocks.localTime.value = dateManager.getLocalDate();
+      this.clocks.nyseTime.value = dateManager.getTimezoneDate('America/New_York');
+      this.clocks.lseTime.value = dateManager.getTimezoneDate('Europe/London');
       this.clocks.timeRunning.value += parseInt(this.clockTimeMs, 10);
+    },
+
+    formatTime(unformattedTime) {
+      return unformattedTime.toString().substring(unformattedTime.toString().indexOf(', ')).replace(', ', '');
     },
   },
 

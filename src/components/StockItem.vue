@@ -6,8 +6,15 @@
     </div>
 
     <div class="percent__container">
-      <div class="percent__title">Percent</div>
-      <div class="percent__value">{{ percentValue }}%</div>
+      <div class="interest-level">
+        <label class="interest-level__label">Interest Level: </label>
+        <div class="interest-level__value">{{ interestLevel }}%</div>
+      </div>
+
+      <div class="volume-percent">
+        <div class="percent__title">Percent</div>
+        <div class="percent__value">{{ percentValue }}%</div>
+      </div>
     </div>
 
     <div class="volume__container">
@@ -52,6 +59,11 @@ export default {
     percentValue: {
       type: Number,
       default: 20,
+    },
+
+    interestLevel: {
+      type: Number,
+      default: 50,
     },
   },
 

@@ -19,7 +19,7 @@
       </div>
       <div class="time-running time__container">
         <label class="time-running__label" v-html="`${clocks.timeRunning.label}: `" />
-        <div class="time-running__clock clock">{{ clockTimeSeconds }}s</div>
+        <div class="time-running__clock clock">{{ clockTimeSeconds }}</div>
       </div>
     </div>
   </div>
@@ -64,7 +64,17 @@ export default {
 
   computed: {
     clockTimeSeconds() {
-      return this.clocks.timeRunning.value / 1000;
+      let hours = Math.floor(this.clocks.timeRunning.value / 1000 / 60 / 60);
+      let mins = Math.floor((this.clocks.timeRunning.value / 1000 / 60 / 60 - hours) * 60);
+      let secs = Math.floor(
+        ((this.clocks.timeRunning.value / 1000 / 60 / 60 - hours) * 60 - mins) * 60,
+      );
+
+      secs = secs < 10 ? secs = `0${secs}` : secs = `${secs}`;
+      mins = mins < 10 ? mins = `0${mins}` : mins = `${mins}`;
+      hours = hours < 10 ? hours = `0${hours}` : hours = `${hours}`;
+
+      return `${hours}h:${mins}m:${secs}s`;
     },
   },
 

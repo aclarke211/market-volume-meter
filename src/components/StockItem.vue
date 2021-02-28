@@ -5,15 +5,15 @@
       <h4 :class="`${className}__symbol`">{{ name.symbol }}</h4>
     </div>
 
-    <div class="percent__container">
-      <div class="interest-level">
-        <label class="interest-level__label">Interest Level: </label>
-        <div class="interest-level__value">{{ interestLevel }}%</div>
+    <div class="percentages__container">
+      <div class="notability percentage">
+        <label class="notability__label">Notability: </label>
+        <div class="notability__value">{{ notability }}%</div>
       </div>
 
-      <div class="volume-percent">
-        <div class="percent__title">Percent</div>
-        <div class="percent__value">{{ percentValue }}%</div>
+      <div class="volume-percent percentage">
+        <label class="volume-percent__label">Volume Percent: </label>
+        <div class="volume-percent__value">{{ percentValue }}%</div>
       </div>
     </div>
 
@@ -61,7 +61,7 @@ export default {
       default: 20,
     },
 
-    interestLevel: {
+    notability: {
       type: Number,
       default: 50,
     },
@@ -106,8 +106,22 @@ $className: ".stock-item";
     margin: 0.25rem;
   }
 
-  .percent__container {
-    margin: .25rem;
+  .percentages__container {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .percentage {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .volume__container {

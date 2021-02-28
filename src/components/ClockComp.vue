@@ -1,21 +1,17 @@
 <template>
   <div :class="className">
     <div class="times__container">
-      <div class="utc-time time__container">
-        <label class="utc-time__label" v-html="`${clocks.utcTime.label}: `" />
-        <div class="utc-time__clock clock">{{ clocks.utcTime.value }}</div>
-      </div>
-      <div class="local-time time__container">
-        <label class="local-time__label" v-html="`${clocks.localTime.label}: `" />
-        <div class="local-time__clock clock">{{ formatTime(clocks.localTime.value) }}</div>
-      </div>
       <div class="nyse-time time__container">
         <label class="nyse-time__label" v-html="`${clocks.nyseTime.label}: `" />
-        <div class="nyse-time__clock clock">{{ formatTime(clocks.nyseTime.value) }}</div>
+        <div class="nyse-time__clock clock">
+          {{ formatTime(clocks.nyseTime.value) }}
+        </div>
       </div>
       <div class="lse-time time__container">
         <label class="lse-time__label" v-html="`${clocks.lseTime.label}: `" />
-        <div class="lse-time__clock clock">{{ formatTime(clocks.lseTime.value) }}</div>
+        <div class="lse-time__clock clock">
+          {{ formatTime(clocks.lseTime.value) }}
+        </div>
       </div>
       <div class="time-running time__container">
         <label class="time-running__label" v-html="`${clocks.timeRunning.label}: `" />
@@ -70,9 +66,9 @@ export default {
         ((this.clocks.timeRunning.value / 1000 / 60 / 60 - hours) * 60 - mins) * 60,
       );
 
-      secs = secs < 10 ? secs = `0${secs}` : secs = `${secs}`;
-      mins = mins < 10 ? mins = `0${mins}` : mins = `${mins}`;
-      hours = hours < 10 ? hours = `0${hours}` : hours = `${hours}`;
+      secs = secs < 10 ? (secs = `0${secs}`) : (secs = `${secs}`);
+      mins = mins < 10 ? (mins = `0${mins}`) : (mins = `${mins}`);
+      hours = hours < 10 ? (hours = `0${hours}`) : (hours = `${hours}`);
 
       return `${hours}h:${mins}m:${secs}s`;
     },
@@ -88,7 +84,10 @@ export default {
     },
 
     formatTime(unformattedTime) {
-      return unformattedTime.toString().substring(unformattedTime.toString().indexOf(', ')).replace(', ', '');
+      return unformattedTime
+        .toString()
+        .substring(unformattedTime.toString().indexOf(', '))
+        .replace(', ', '');
     },
   },
 
@@ -105,8 +104,18 @@ export default {
 $className: ".clock-comp";
 
 #{$className} {
-  margin: 0;
+  margin: 0 0 0 10%;
   padding: 0;
-}
 
+  .times__container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .time__container {
+    margin: .5rem 1rem;
+    padding: 0;
+    text-align: center;
+  }
+}
 </style>

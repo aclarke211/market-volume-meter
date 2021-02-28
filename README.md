@@ -1,34 +1,20 @@
 # market-volume-meter
 
-## Project setup
-```
+## About ✍
+Custom indicator to measure the relative volume for a market instruments vs. the total volume for the instrument within a given timeframe.
+
+## Dev 💻
+### Install Dependencies
+```ps
 npm install
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
+### Run Locally
+```ps
+npm run dev
 ```
 
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
+### Lint Files
+```ps
 npm run lint
 ```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

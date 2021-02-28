@@ -152,6 +152,7 @@ $className: '.stocks-browser';
   margin: 1rem;
 
   &__title {
+    font-size: 1.5rem;
     font-weight: 600;
   }
 }

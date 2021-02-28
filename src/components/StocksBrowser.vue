@@ -2,6 +2,7 @@
   <div :class="className">
     <h2 :class="`${className}__title`" v-html="title" :style="{color: randomColour}" />
     <p :class="`${className}__description`" v-html="description" />
+    <ClockComp />
     <div :class="`${className}__controls__container`">
       <button
         :class="`${className}__control`"
@@ -22,6 +23,7 @@
 </template>
 
 <script>
+import ClockComp from '@/components/ClockComp.vue';
 import StockItem from '@/components/StockItem.vue';
 
 export default {
@@ -130,6 +132,7 @@ export default {
 
   components: {
     StockItem,
+    ClockComp,
   },
 };
 </script>

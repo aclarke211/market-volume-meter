@@ -13,10 +13,6 @@
           {{ formatTime(clocks.lseTime.value) }}
         </div>
       </div>
-      <div class="time-running time__container">
-        <label class="time-running__label" v-html="`${clocks.timeRunning.label}: `" />
-        <div class="time-running__clock clock">{{ clockTimeSeconds }}</div>
-      </div>
     </div>
   </div>
 </template>

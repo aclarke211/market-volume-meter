@@ -63,10 +63,9 @@ export default {
 
   computed: {
     instruments() {
-      console.log(this.timesGenerated);
-
       const refreshedStocks = {
         stocks: this.generateStocks(),
+        timesGenerated: this.timesGenerated,
       };
 
       return refreshedStocks;

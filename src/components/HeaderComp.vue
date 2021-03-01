@@ -75,6 +75,9 @@ $linksActiveColor: #505eac;
     font-size: 1.75rem;
     font-weight: 600;
     margin-left: 0;
+    background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   &__nav {

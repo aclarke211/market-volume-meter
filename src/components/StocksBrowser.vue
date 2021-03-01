@@ -33,6 +33,12 @@ export default {
       default: () => ([
         {
           name: {
+            text: 'Tesla',
+            symbol: 'TSLA',
+          },
+        },
+        {
+          name: {
             text: 'Apple',
             symbol: 'AAPL',
           },
@@ -41,12 +47,6 @@ export default {
           name: {
             text: 'Microsoft Corp.',
             symbol: 'MSFT',
-          },
-        },
-        {
-          name: {
-            text: 'Tesla',
-            symbol: 'TSLA',
           },
         },
       ]),
@@ -119,13 +119,13 @@ export default {
 
       switch (stock.name.symbol) {
         case 'TSLA':
-          relativeValue = 37;
+          relativeValue = 134;
           break;
         case 'AAPL':
-          relativeValue = 36;
+          relativeValue = 128;
           break;
         case 'MSFT':
-          relativeValue = 35;
+          relativeValue = 125;
           break;
 
         default:

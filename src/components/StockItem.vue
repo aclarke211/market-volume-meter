@@ -6,11 +6,6 @@
     </div>
 
     <div class="percentages__container">
-      <div class="notability percentage">
-        <label class="notability__label">Notability: </label>
-        <div class="notability__value">{{ notability }}%</div>
-      </div>
-
       <div class="volume-percent percentage">
         <label class="volume-percent__label">Volume Percent: </label>
         <div class="volume-percent__value">{{ percentValue }}%</div>
@@ -50,20 +45,15 @@ export default {
     volume: {
       type: Object,
       default: () => ({
-        relative: 14.4,
-        total: 40.25,
-        current: 20.11,
+        relative: 0,
+        total: 0,
+        current: 0,
       }),
     },
 
     percentValue: {
       type: Number,
-      default: 20,
-    },
-
-    notability: {
-      type: Number,
-      default: 50,
+      default: 0,
     },
   },
 

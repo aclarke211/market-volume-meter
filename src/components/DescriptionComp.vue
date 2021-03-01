@@ -26,7 +26,7 @@ export default {
   data: () => ({
     className: 'description-comp',
     messages: [
-      'This meter shows the following statistics.',
+      'This meter calculates statistics based in the following parameters.',
     ],
     bullets: [
       'Every morning a stock has a relative volume.',
@@ -46,6 +46,15 @@ $className: ".description-comp";
 #{$className} {
   margin: 0;
   padding: 0;
+
+  &__bullets-container {
+    margin: 2rem 0;
+  }
+
+  &__bullet {
+    font-size: .85rem;
+    margin: 1rem 0;
+  }
 }
 
 </style>

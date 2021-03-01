@@ -116,7 +116,7 @@ $className: ".stock-item";
   }
 
   .percentage {
-    margin: 0;
+    margin: 0 .25rem;
     padding: 0;
     display: flex;
     flex-direction: column;

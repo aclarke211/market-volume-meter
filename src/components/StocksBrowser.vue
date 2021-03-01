@@ -124,14 +124,11 @@ export default {
 $className: '.stocks-browser';
 
 #{$className} {
-  border: solid forestgreen;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: auto;
-  max-width: 100%;
-  margin: 1rem;
+  margin: 0;
 
   &__title {
     font-size: 1.5rem;

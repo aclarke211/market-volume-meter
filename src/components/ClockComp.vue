@@ -100,7 +100,7 @@ export default {
 $className: ".clock-comp";
 
 #{$className} {
-  margin: 0 0 0 10%;
+  margin: 0;
   padding: 0;
 
   .times__container {

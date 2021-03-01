@@ -24,6 +24,11 @@ export default {
 /* Sass Variables */
 $defaultFontColor: #272727;
 
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
 * {
   font-family: 'oxygen-regular', sans-serif;
   letter-spacing: .05rem;
@@ -32,6 +37,6 @@ $defaultFontColor: #272727;
 }
 
 .router-view {
-  padding: .5rem;
+  padding: 1rem 2rem;
 }
 </style>

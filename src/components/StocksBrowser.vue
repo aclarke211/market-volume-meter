@@ -1,5 +1,5 @@
 <template>
-  <div :class="className">
+  <div :class="className" :key="timesGenerated">
     <h2 :class="`${className}__title`" v-html="title" />
     <p :class="`${className}__description`" v-html="description" />
     <div :class="`${className}__controls__container`">
@@ -57,11 +57,14 @@ export default {
     title: 'Stocks Browser',
     description: 'Currently using mock data.',
     className: 'stocks-browser',
-    addValue: 10,
+    timesGenerated: 0,
+    autoRefreshTime: 3000,
   }),
 
   computed: {
     instruments() {
+      console.log(this.timesGenerated);
+
       const refreshedStocks = {
         stocks: this.generateStocks(),
       };
@@ -72,36 +75,64 @@ export default {
 
   methods: {
     regenerate() {
-      this.addValue += 1;
-
-      this.generateStocks();
+      this.timesGenerated += 1;
     },
 
-    generateValues(min, max) {
+    generateRandomValue(min, max) {
       const randomNum = Math.random() * (max - min) + min;
       return Math.floor(randomNum);
     },
 
     generateStocks() {
-      let updatedStocks = this.stocks.map((stock) => {
+      const updatedStocks = this.stocks.map((stock) => {
         const tempStock = stock;
 
-        tempStock.volume = this.generateVolume();
+        tempStock.volume = this.generateVolume(tempStock);
         tempStock.percentValue = this.calculateVolumePercent(tempStock.volume);
         return tempStock;
-      });
-
-      updatedStocks = this.reorderStocks(updatedStocks);
+      }).sort((a, b) => parseFloat(b.percentValue) - parseFloat(a.percentValue));
 
       return updatedStocks;
     },
 
-    generateVolume() {
+    generateVolume(stock) {
+      const rel = this.getRelativeValue(stock);
+      const cur = this.generateRandomValue(0, 6);
+      const tot = this.getTotalVaue(stock, cur);
+
       return {
-        relative: this.generateValues(10, 100),
-        total: this.generateValues(10, 100),
-        current: this.generateValues(this.addValue, 100),
+        relative: rel,
+        total: tot,
+        current: cur,
       };
+    },
+
+    getTotalVaue(stock, current) {
+      if (stock.volume) {
+        return stock.volume.total + current;
+      }
+      return current;
+    },
+
+    getRelativeValue(stock) {
+      let relativeValue;
+
+      switch (stock.name.symbol) {
+        case 'TSLA':
+          relativeValue = 37;
+          break;
+        case 'AAPL':
+          relativeValue = 36;
+          break;
+        case 'MSFT':
+          relativeValue = 35;
+          break;
+
+        default:
+          return 0;
+      }
+
+      return relativeValue;
     },
 
     calculateVolumePercent(volume) {
@@ -111,6 +142,12 @@ export default {
     reorderStocks(stocks) {
       return stocks.sort((a, b) => parseFloat(b.percentValue) - parseFloat(a.percentValue));
     },
+  },
+
+  mounted() {
+    setInterval(() => {
+      this.regenerate();
+    }, this.autoRefreshTime);
   },
 
   components: {
